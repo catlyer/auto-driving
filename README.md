@@ -1,6 +1,12 @@
+Inside each folder you can find the respective python files for each map as well as a planned route for them
+
+
 Short summary of the important functions, if you want a more indepth explanation, you can probably ask Gemini or Copilot.
 
+
 If a function in the code is not here, it is either a function that serves very little purpose and is straightforward or a function for automating repetitive movements (Example being the inandout function in the template)
+
+
 
 1. `linefollowBlack`: Self explanatory, uses the `getPosBlack` function to get the inputs from the sensors and calculates where the line is located to then control the turning of the robot.
 2. `linefollowWhite`: See `linefollowBlack`, fundementally similar but the sensors are tracking the opposite colour
