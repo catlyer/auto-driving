@@ -183,6 +183,11 @@ def AILoopStart():
     #fuck you
     return
 
+#-----------------------------------------------------------------------------------------------------------------
+# IF YOU WANT TO COPY COPY FROM BELOW THIS LINE AND PASTE IT IN THE SAME SPOT IN YOUR OWN CODE
+# HIGHLY ENCOURAGED TO LEARN AND UNDERSTAND WHAT THE CODE DOES
+# ANY QUESTIONS FILE A GITHUB ISSUE REQUEST OR CONTACT ME OR SOMEONE WHO KNOWS PYTHON
+
 # Black line tracking
 def getPosBlack():
     pos = 0
@@ -308,20 +313,23 @@ def is_lightblue():
 def is_magenta():
     return isColor(146, 5, 127)
 
-def is_red():
-    return isColor(220, 1, 1)
+#def is_darkorange():
+    return isColor(0, 0, 0)
 
-def is_blue():
-    return isColor(1, 1, 220)
+#def is_purple():
+    return isColor(0, 0, 0)
 
-def is_cyan():
-    return isColor(1, 255, 255)
+#def is_green():
+    return isColor(0, 0, 0)
 
-def is_white():
-    return isColor(255, 255, 128)
+#def is_lightred():
+    return isColor(0, 0, 0)
 
-def is_grey():
-    return isColor(255, 255, 240)
+#def is_pink():
+    return isColor(0, 0, 0)
+
+#def is_brown():
+    return isColor(0, 0, 0)
 
 # Cardinal directions 
 def is_south():
@@ -357,8 +365,8 @@ def nextState():
     gameState += 1
     stateTime = 0
 
-speed = 60
-gain = 1.3
+speed = 100
+gain = 1.5
 
 # For timers
 def is_duration(duration):
@@ -395,6 +403,63 @@ def move_steering(speed, steering): # Corrected argument order
         WheelLeft = speed + (2 * speed * steering / 100)
         WheelRight = speed
 
+# Checkpoint function
+def checkpoint():
+    global LED_1
+    stop()
+    LED_1 = 1
+
+def zRange(direction): # Adjust range here if you need a tighter turn
+    lower = direction - 10
+    upper = direction + 10
+    if RotationZ > lower and RotationZ < upper:
+        return True
+    
+def invertzRange(direction): # Adjust range here if you need a tighter turn
+    invertdirection = direction 
+
+
+# The in and out function
+def inandout(speed, gain, direction, flipdirection, is_color1, is_color2=None): # is_color should be the actual colour function, direction is cardinal direction, function will flip it, should support all directions
+    global LED_1, WheelLeft, WheelRight
+    LocalState = 1
+
+    if is_color2 is None:
+        is_color2 = is_color1
+
+    if LocalState == 1:
+        linefollowBlack(speed, gain)
+        if is_color1():
+            LocalState += 1
+
+    if LocalState == 2:
+        gyro_follow(direction, speed)
+        if zRange(direction) == True:   
+            LocalState += 1
+
+    if LocalState == 3:
+        linefollowBlack(speed, gain)
+        if is_orange():
+            LocalState += 1
+
+    if LocalState == 4:
+        checkpoint()
+        if is_duration(2):
+            LED_1 = 0
+            LocalState += 1
+
+    if LocalState == 5:
+        gyro_follow(flipdirection, speed)
+        if invertzRange(flipdirection) == True:
+            LocalState += 1
+
+    if LocalState == 6:
+        linefollowBlack(speed, gain)
+        if is_color2():
+            LocalState += 1
+
+    return
+
 def Game0():
     #Add your code here!
     global stateTime, LED_1, WheelLeft, WheelRight, RotationZ, CS_R, CS_G, CS_B, IR_L1, IR_L2, IR_L3, IR_R1, IR_R2, IR_R3 # Declare globals
@@ -406,17 +471,72 @@ def Game0():
         if is_orange():
             nextState()
 
-    if gameState == 2:
-        stop()
-        LED_1 = 1
+    if gameState == 2: # Checkpoint 1
+        checkpoint()
         if is_duration(2):
+            LED_1 = 0
             nextState()
 
     if gameState == 3:
-        moveForward()
-        LED_1 = 0
-        if is_duration(0.5):
+        if inandout(speed, gain, 180, 0, is_blue) == True:
             nextState()
+
+    if gameState == 4:
+        gyro_follow(90, speed)
+        if is_east():
+            nextState()
+
+    if gameState == 5:
+        checkpoint()
+        if is_duration(2):
+            LED_1 = 0
+            nextState()
+
+    if gameState == 6:
+        if inandout(speed, gain, 180, 0, is_magenta) == True:
+            nextState()
+
+    if gameState == 7:
+        gyro_follow(90, speed)
+        if is_east():
+            nextState()
+
+    if gameState == 8:
+        linefollowBlack(speed, gain)
+        if is_orange():
+            nextState()
+
+    if gameState == 9:
+        checkpoint()
+        if is_duration(2):
+            LED_1 = 0
+            nextState()
+
+    if gameState == 10:
+        if inandout(speed, gain, 180, 0, is_darkorange) == True:
+            nextState()
+
+    if gameState == 17:
+        linefollowBlack(speed, gain)
+        if is_magenta():
+            nextState()
+
+    if gameState == 18:
+        gyro_follow(90, speed)
+        if is_east():
+            nextState()
+
+    if gameState == 19:
+        linefollowBlack(speed, gain)
+        if is_orange():
+            nextState()
+
+    if gameState == 20:
+        checkpoint()
+        if is_duration(2):
+            LED_1 = 0
+            nextState()
+
     return 1
 
 def AILoop():
@@ -426,5 +546,5 @@ def AILoop():
     if CurGame == 0:
         Game0()
     else:
-        WheelLeft= 0;  WheelRight= 0;  LED_1= 0;  
+        WheelLeft= 0;  WheelRight= 0;  LED_1= 0;
 
