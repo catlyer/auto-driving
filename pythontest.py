@@ -310,28 +310,31 @@ def is_orange():
 def is_lightblue():
     return isColor(4, 80, 192)
 
+def is_blue():
+    return isColor(0, 0, 0)
+
 def is_magenta():
     return isColor(146, 5, 127)
 
-#def is_darkorange():
+def is_darkorange():
     return isColor(0, 0, 0)
 
-#def is_darkgreen():
+def is_darkgreen():
     return isColor(0, 0, 0)
 
-#def is_purple():
+def is_purple():
     return isColor(0, 0, 0)
 
-#def is_green():
+def is_green():
     return isColor(0, 0, 0)
 
-#def is_lightred():
+def is_lightred():
     return isColor(0, 0, 0)
 
-#def is_pink():
+def is_pink():
     return isColor(0, 0, 0)
 
-#def is_brown():
+def is_brown():
     return isColor(0, 0, 0)
 
 # Cardinal directions 
@@ -663,7 +666,7 @@ def Game0():
         if is_brown():
             nextState()
 
-    if gamestate == 39:
+    if gameState == 39:
         moveForward()
         if is_duration(0.5):
             nextState()
