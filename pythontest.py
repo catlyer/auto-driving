@@ -316,6 +316,9 @@ def is_magenta():
 #def is_darkorange():
     return isColor(0, 0, 0)
 
+#def is_darkgreen():
+    return isColor(0, 0, 0)
+
 #def is_purple():
     return isColor(0, 0, 0)
 
@@ -513,29 +516,144 @@ def Game0():
             nextState()
 
     if gameState == 10:
-        if inandout(speed, gain, 180, 0, is_darkorange) == True:
+        if inandout(speed, gain, 270, 90, is_darkorange) == True:
             nextState()
 
-    if gameState == 17:
+    if gameState == 11:
+        gyro_follow(0, speed)
+        if is_north():
+            nextState()
+
+    if gameState == 12:
         linefollowBlack(speed, gain)
-        if is_magenta():
+        if is_darkgreen():
             nextState()
 
-    if gameState == 18:
-        gyro_follow(90, speed)
-        if is_east():
+    if gameState == 13:
+        gyro_follow(270, speed)
+        if is_west():
             nextState()
 
-    if gameState == 19:
+    if gameState == 14:
         linefollowBlack(speed, gain)
         if is_orange():
             nextState()
 
-    if gameState == 20:
+    if gameState == 15:
         checkpoint()
         if is_duration(2):
             LED_1 = 0
             nextState()
+    
+    if gameState == 16:
+        linefollowBlack(speed, gain)
+        if is_purple():
+            nextState()
+    
+    if gameState == 17:
+        gyro_follow(0, speed)
+        if is_north():
+            nextState()
+    
+    if gameState == 18:
+        linefollowBlack(speed, gain)
+        if is_orange():
+            nextState()
+    
+    if gameState == 19:
+        checkpoint()
+        if is_duration(2):
+            LED_1 = 0
+            nextState()
+
+    if gameState == 20:
+        linefollowBlack(speed, gain)
+        if is_green():
+            nextState()
+    
+    if gameState == 21:
+        if inandout(speed, gain, 180, 0, is_green) == True:
+            nextState()
+
+    if gameState == 22:
+        gyro_follow(270, speed)
+        if is_west():
+            nextState()
+
+    if gameState == 23:
+        if inandout(speed, gain, 180, 0, is_lightred) == True:
+            nextState()
+
+    if gameState == 24:
+        gyro_follow(270, speed)
+        if is_west():
+            nextState()
+
+    if gameState == 25:
+        linefollowBlack(speed, gain)
+        if is_orange():
+            nextState()
+    
+    if gameState == 26:
+        checkpoint()
+        if is_duration(2):
+            LED_1 = 0
+            nextState()
+
+    if gameState == 27:
+        moveForward()
+        if is_duration(0.5):
+            nextState()
+    
+    if gameState == 28:
+        linefollowBlack(speed, gain)
+        if is_orange():
+            nextState()
+
+    if gameState == 29:
+        checkpoint()
+        if is_duration(2):
+            LED_1 = 0
+            nextState()
+
+    if gameState == 30:
+        moveForward()
+        if is_duration(0.5):
+            nextState()
+
+    if gameState == 31:
+        linefollowBlack(speed, gain)
+        if is_orange():
+            nextState()
+
+    if gameState == 32:
+        checkpoint()
+        if is_duration(2):
+            LED_1 = 0
+            nextState()
+
+    if gameState == 33:
+        moveForward()
+        if is_duration(0.5):
+            nextState()
+
+    if gameState == 34:
+        linefollowBlack(speed, gain)
+        if is_orange():
+            nextState()
+
+    if gameState == 35:
+        checkpoint()
+        if is_duration(2):
+            LED_1 = 0
+            nextState()
+
+    if gameState == 36:
+        linefollowBlack
+        if is_pink():
+            nextState()
+    
+
 
     return 1
 
