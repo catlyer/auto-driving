@@ -180,13 +180,13 @@ def GameStart():
     return
 
 def AILoopStart():
-    #fuck you
+    # Useless function
     return
 
 #-----------------------------------------------------------------------------------------------------------------
 # IF YOU WANT TO COPY COPY FROM BELOW THIS LINE AND PASTE IT IN THE SAME SPOT IN YOUR OWN CODE
 # HIGHLY ENCOURAGED TO LEARN AND UNDERSTAND WHAT THE CODE DOES
-# ANY QUESTIONS FILE A GITHUB ISSUE REQUEST OR CONTACT ME OR SOMEONE WHO KNOWS PYTHON
+# ANY QUESTIONS FILE A GITHUB ISSUE REQUEST OR CONTACT ME/SOMEONE WHO KNOWS PYTHON
 
 # Black line tracking
 def getPosBlack():
