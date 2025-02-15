@@ -649,11 +649,55 @@ def Game0():
             nextState()
 
     if gameState == 36:
-        linefollowBlack
+        linefollowBlack(speed, gain)
         if is_pink():
             nextState()
-    
 
+    if gameState == 37:
+        gyro_follow(0, speed)
+        if is_north():
+            nextState()
+    
+    if gameState == 38:
+        linefollowBlack(speed, gain)
+        if is_brown():
+            nextState()
+
+    if gamestate == 39:
+        moveForward()
+        if is_duration(0.5):
+            nextState()
+
+    if gameState == 40:
+        gyro_follow(60, speed)
+        if RotationZ == zRange(60):
+            nextState()
+
+    if gameState == 41:
+        linefollowBlack(speed, gain)
+        if is_brown():
+            nextState()
+
+    if gameState == 42:
+        moveForward()
+        if is_duration(0.5):
+            nextState()
+
+    if gameState == 43:
+        gyro_follow(90, speed)
+        if RotationZ == zRange(90):
+            nextState()
+
+    if  gameState == 44:
+        linefollowBlack(speed, gain)
+        if is_orange():
+            nextState()
+
+    if gameState == 45:
+        checkpoint()
+        if is_duration(2):
+            LED_1 = 0
+            nextState()
 
     return 1
 
